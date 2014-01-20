@@ -951,6 +951,10 @@ _fr_command_add (FrCommand      *self,
 		new_file_list = _g_string_list_dup (file_list);
 	}
 
+	/* please see fr-archive for the explanation of the following code */
+	if (base_dir_created && ! archive->propAddCanFollowDirectorysWithoutImploding)
+		follow_links = TRUE;
+
 	/* if the command cannot update,  get the list of files that are
 	 * newer than the ones in the archive. */
 

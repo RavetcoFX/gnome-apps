@@ -887,6 +887,9 @@ _g_path_remove_level (const gchar *path)
 	if (p < 0)
 		return NULL;
 
+	if ((ptr[p] == '/') && (p > 0))
+		p--;
+
 	while ((p > 0) && (ptr[p] != '/'))
 		p--;
 	if ((p == 0) && (ptr[p] == '/'))

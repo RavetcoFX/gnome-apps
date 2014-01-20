@@ -121,6 +121,18 @@ struct _FrArchive {
 	 */
 	guint          propAddCanStoreLinks : 1;
 
+	/* propAddCanFollowDirectorysWithoutImploding:
+	 * 
+	 * Used to "fix" and issue with 7zip when trying to a file to a subfolder.
+	 * "7z a -bd -y -mx=7 -- /home/user/archive.7z doc/Starbucks.odt"
+	 * This command gives and error because 7zip doesnt see the /doc/Starbucks.odt
+	 * for some reason, in this case we have to add the -1 option to always difference the links.
+	 * 
+	 * This will mean that when adding a file to a subfolder in a 7zip file, we cannot store symlinks,
+	 * this is not wonderful, but it is better then an error.
+	 */
+	 guint         propAddCanFollowDirectorysWithoutImploding : 1;
+	 
 	/* propExtractCanAvoidOverwrite:
 	 *
 	 * TRUE if the command can avoid to overwrite the files on disk.

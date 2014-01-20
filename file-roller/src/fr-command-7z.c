@@ -680,4 +680,5 @@ fr_command_7z_init (FrCommand7z *self)
 	base->propPassword                 = TRUE;
 	base->propTest                     = TRUE;
 	base->propListFromFile             = TRUE;
+	base->propAddCanFollowDirectorysWithoutImploding = FALSE;
 }
