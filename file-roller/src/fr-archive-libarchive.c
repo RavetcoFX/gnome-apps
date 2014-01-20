@@ -30,6 +30,7 @@
 #include <archive.h>
 #include <archive_entry.h>
 #include "file-data.h"
+#include "file-utils.h"
 #include "fr-error.h"
 #include "fr-archive-libarchive.h"
 #include "glib-utils.h"
@@ -103,6 +104,13 @@ fr_archive_libarchive_get_capabilities (FrArchive  *archive,
 		capabilities |= FR_ARCHIVE_CAN_WRITE;
 		return capabilities;
 	}
+    
+    /*Give priority to 7za for opening CAB files as it supports them better */
+    if ((strcmp (mime_type, "application/vnd.ms-cab-compressed") == 0)
+        && _g_program_is_available ("7za", check_command))
+    {
+        return capabilities;
+    }
 
 	capabilities |= FR_ARCHIVE_CAN_READ;
 
