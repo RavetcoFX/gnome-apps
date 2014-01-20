@@ -346,7 +346,7 @@
             <child>
               <object class="GtkImage" id="image2">
                 <property name="visible">True</property>
-                <property name="icon-name">edit-clear-symbolic</property>
+                <property name="icon-name">window-close</property>
               </object>
             </child>
           </object>
